@@ -35,8 +35,36 @@ const addOperator = (text) => {
        textArea.value = value.substring(0, (value.length - 1) ) + text;
    }
 
-
 }
+
+// deleting the input
+const deleteVal = () => {
+    let  {value} = textArea;
+    if(value.length > 0){
+        textArea.value = value.substring(0, value.length -1);
+    }
+}
+
+
+//clearing the whole input
+const clearInput = () => {
+    textArea.value = "";
+}
+
+
+//Perform calculation
+const calc = () => {
+    const { value } = calcArea;
+    const result = eval(value);
+  
+    if (!isNaN(result)) {
+      calcArea.value = result;
+    } else {
+      alert("Wrong expression, Please check your input");
+    }
+  };
+
+  
 //add eventlisteners to calculator buttons
 document.querySelectorAll(".button-group > span").forEach(e => {
     
@@ -50,9 +78,9 @@ document.querySelectorAll(".button-group > span").forEach(e => {
         } else if(classList.contains("opr")){
             addOperator(innerText);
         }else if(classList.contains("clear")){
-            
+            clearInput();
         }else if(classList.contains("delete")){
-            
+            deleteVal();
         }else if(classList.contains("calc")){
             
         }
